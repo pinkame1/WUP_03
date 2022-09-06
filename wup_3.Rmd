@@ -19,7 +19,7 @@ davisdata <- read.csv(file="UCDavis.csv")
 
 ``` {r eval=FALSE}
 davisdata <- davisdata %>%
-mutate (across(where(is. character), as.factor))
+mutate(across(where(is. character), as.factor))
 ```
 
 ## Now with ggplot - first select the basic data
@@ -47,6 +47,15 @@ model1 <- aov(alcohol~Seat, data=davisdata)
 summary.aov (model1)
 ```
 As we can see through the one way anova test that the Pr results were 0.000116 which tells us that there is a 0.000116 chance that the back row would consume less school than the front and middle rows. Which means it is a extremely small chance that the back row will consume less alcohol than the front or middle rows. 
+
+``` {r}
+#we specify the margins starting at the bottom and preceding clockwise - thus 8.7 is the left side margin to hold the names of the factors
+par (mar = c(3, 8.7, 2, 2))
+plot(TukeyHSD(model1),las=2)
+```
+
+These three element test shows us the front and back rows are different , the middle and back are different, but the middle and front are statistically the same. 
+
 
 ## Conclusions
 
