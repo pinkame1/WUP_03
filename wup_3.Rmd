@@ -40,8 +40,13 @@ As we can see in the box plot, the people who sat in the back consumed more alco
 ``` {r}
 favstats (alcohol~Seat, data= davisdata)
 ```
-As we can see through the data that the mean of the front row is 1.8, the middle is 3.28 , and the back is 9.6. This shows us the back has a larger mean than the front and the middle which means the bakc has a larger alcohol consumption. 
+As we can see through the data that the mean of the front row is 1.8, the middle is 3.28 , and the back is 9.6. This shows us the back has a larger mean than the front and the middle which means the back has a larger alcohol consumption. 
 ## Inferential Tests
+``` {r} 
+model1 <- aov(alcohol~Seat, data=davisdata)
+summary.aov (model1)
+```
+As we can see through the one way anova test that the Pr results were 0.000116 which tells us that there is a 0.000116 chance that the back row would consume less school than the front and middle rows. Which means it is a extremely small chance that the back row will consume less alcohol than the front or middle rows. 
 
 ## Conclusions
 
