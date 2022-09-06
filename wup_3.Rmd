@@ -1,7 +1,7 @@
 ---
 title: "Alcohol vs Seat choice"
-author: "Your Name"
-date: "Fall 2020"
+author: "America Olivo"
+date: "Fall 2021"
 output: html_document
 ---
 
@@ -17,6 +17,11 @@ davisdata <- read.csv(file="UCDavis.csv")
 ## Our Goal is to answer this question Is there a difference between the alcohol consumed between the row
 ## you choose to sit in??
 
+``` {r eval=FALSE}
+davisdata <- davisdata %>%
+mutate (across(where(is. character), as.factor))
+```
+
 ## Now with ggplot - first select the basic data
 
 ```{r}
@@ -27,16 +32,15 @@ basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
 ```{r}
 basicCN + geom_boxplot()
 ```
-  
-  
-### get fancy  
 
-```{r}
-basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
-```
-
+As we can see in the box plot, the people who sat in the back consumed more alcohol than the people who si tin the middle and front. The median of the front is at 0, while the median of the middle is around 1-2. Lastly the median for the people in the back is 4-5. Looking at the medians we can conclude that the average person to consume alcohol sit in the back.
+  
 ## Numerical Summarys 
 
+``` {r}
+favstats (alcohol~Seat, data= davisdata)
+```
+As we can see through the data that the mean of the front row is 1.8, the middle is 3.28 , and the back is 9.6. This shows us the back has a larger mean than the front and the middle which means the bakc has a larger alcohol consumption. 
 ## Inferential Tests
 
 ## Conclusions
